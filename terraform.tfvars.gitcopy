@@ -1,0 +1,6 @@
+# vSphere logins
+vsphere_user= ""
+vsphere_password= ""
+vsphere_server= ""
+# root password
+root_password = "redhat"

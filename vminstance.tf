@@ -67,5 +67,28 @@ resource "vsphere_virtual_machine" "vm" {
 
     }
   }
+  provisioner "file" {
+    source      = "/root/Terraform/Codez/post_installation.sh"
+    destination = "/root/post_installation.sh"
+  
+   connection {
+     type     = "ssh"
+     user     = "root"
+     password = "${var.root_password}" 
+   }    
+  }
+
+   provisioner "remote-exec" {
+     connection {
+       type     = "ssh"
+       user     = "root"
+       password = "${var.root_password}"
+     }
+     
+   inline = [
+     "chmod +x /root/post_installation.sh",
+     "/root/post_installation.sh",
+    ]
+   }
 
 }
